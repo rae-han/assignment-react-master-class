@@ -1,35 +1,50 @@
 import { createBrowserRouter } from 'react-router-dom'
 
+import DefaultLayout from "../layouts/DefaultLayout.tsx";
+import App from "../App.tsx";
+
+import Home from "../pages/Home.tsx";
+import About from "../pages/About.tsx";
+import BookList from "../pages/BookList.tsx";
+import BookDetail from "../components/BookDetail.tsx";
+import ChapterList from "../components/ChapterList.tsx";
+import CharacterList from "../components/CharacterList.tsx";
+
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <App />,
     children: [
       {
         path: "",
         element: <Home />,
-        errorElement: <ErrorComponent />,
       },
       {
         path: "about",
         element: <About />
       },
       {
-        path: "users/:userId",
-        // users 일때의 element가 없다면 이렇게 해도 되고
-        // users와 users/:id의 element가 다르다면 다시 children으로 나눠주면 된다.
-        element: <User />,
+        path: "author/:authorId",
+        element: <BookList />,
         children: [
           {
-            path: "followers",
-            element: <Followers />
+            path: ":bookId",
+            element: <BookDetail />,
+            children: [
+              {
+                path: "chapters",
+                element: <ChapterList />
+              },
+              {
+                path: "characters",
+                element: <CharacterList />
+              },
+            ]
           }
         ]
       },
     ],
-    errorElement: <NotFound />,
-    // errorElement: <ErrorComponent />
-
+    // errorElement: <NotFound />,
   }
 ])
 
