@@ -1,4 +1,5 @@
 import React from 'react';
+import {FilmItemContainer} from "./styles.tsx";
 
 interface Props {
   item: string
@@ -6,9 +7,11 @@ interface Props {
 
 const FilmItem = ({ item }: Props) => {
   return (
-    <li>
-      {item}
-    </li>
+    <FilmItemContainer>
+      <button>
+        {item}
+      </button>
+    </FilmItemContainer>
   );
 };
 
