@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const CharacterListContainer = styled.ul`
   display: grid;
+  justify-content: center;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 32px 16px;
   width: 100%;
