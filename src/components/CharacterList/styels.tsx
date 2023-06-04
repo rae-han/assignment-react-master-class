@@ -7,4 +7,5 @@ export const CharacterListContainer = styled.ul`
   width: 100%;
   max-width: 768px;
   margin: 0 auto;
+  padding: 0 20px;
 `;
