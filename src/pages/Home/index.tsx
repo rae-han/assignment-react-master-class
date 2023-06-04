@@ -1,20 +1,27 @@
 import React from 'react';
 import {useCharacters} from "../../hooks/queries/character.ts";
-import {Link} from "react-router-dom";
+import {HomeContainer} from "./styles.tsx";
+import CharacterList from "../../components/CharacterList";
 
 const Home = () => {
-  const { data: characters, isLoading } = useCharacters();
+  const { data: characters, isLoading, error } = useCharacters();
 
-  console.log(characters);
+  if (error) {
+    return null;
+  }
 
   return (
-    <ul>
-      {characters?.map((character, index) => (
-        <li key={character.id}>
-          <Link to={`/character/${character.id}`}>{character.name}</Link>
-        </li>
-      ))}
-    </ul>
+    <HomeContainer>
+      { (isLoading || !characters)
+        ? <div>loading</div>
+        : (
+          <>
+            <h1 className="Title">Disney Characters</h1>
+            <CharacterList characters={characters} />
+          </>
+        )
+      }
+    </HomeContainer>
   );
 };
 
